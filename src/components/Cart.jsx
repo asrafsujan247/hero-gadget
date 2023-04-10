@@ -21,12 +21,17 @@ const Cart = () => {
     const remaining = cart.filter((product) => product.id !== id);
     setCart(remaining);
     removeFromDb(id);
+    toast.error("Product Removed! 🔥");
   };
 
   //   delete shopping cart
   const deleteCartHandler = () => {
-    setCart([]);
-    deleteShoppingCart();
+    if (cart.length) {
+      setCart([]);
+      deleteShoppingCart();
+      return toast.error("All Items Removed! 🔥");
+    }
+    return toast.error("Cart is empty! 🔥");
   };
 
   // place order
@@ -34,9 +39,9 @@ const Cart = () => {
     if (cart.length > 0) {
       setCart([]);
       deleteShoppingCart();
-      return toast.success("Order done");
+      return toast.success("Order Placed! 👍");
     }
-    return toast.error("Cart Empty!");
+    return toast.error("Cart is empty! 🔥");
   };
 
   return (

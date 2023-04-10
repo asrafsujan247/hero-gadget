@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ProductCard from "./Cards/ProductCard";
 import { addToDb } from "../utils/fakeDb";
 import { CartContext, ProductContext } from "../App";
+import { toast } from "react-hot-toast";
 
 const Shop = () => {
   const products = useContext(ProductContext);
@@ -23,6 +24,7 @@ const Shop = () => {
       exists.quantity = exists.quantity + 1;
       newCart = [...rest, exists];
     }
+    toast.success("Product Added! 🛒");
     setCart(newCart);
     addToDb(product.id);
   };
