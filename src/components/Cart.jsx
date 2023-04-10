@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
 
 const Cart = () => {
@@ -23,7 +23,24 @@ const Cart = () => {
             <CartItem key={product.id} product={product}></CartItem>
           ))}
         </ul>
-        <p>total:{total}</p>
+        <div className="space-y-1 text-right">
+          <p>
+            Total amount: <span className="font-semibold">{total}$</span>
+          </p>
+          <p className="text-sm text-gray-400">
+            Not including taxes and shipping costs
+          </p>
+        </div>
+        <div className="flex justify-end space-x-4">
+          {cartArray.length > 0 ? (
+            <button className="btn-outlined">Clear Cart</button>
+          ) : (
+            <Link to="/shop">
+              <button className="btn-outlined">Back To Shop</button>
+            </Link>
+          )}
+          <button className="btn-primary">Place Order</button>
+        </div>
       </div>
     </div>
   );
