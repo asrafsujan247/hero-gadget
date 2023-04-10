@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
 import { deleteShoppingCart, removeFromDb } from "../utils/fakeDb";
 import { CartContext } from "../App";
+import { toast } from "react-hot-toast";
 
 const Cart = () => {
   const [cart, setCart] = useContext(CartContext);
@@ -33,9 +34,9 @@ const Cart = () => {
     if (cart.length > 0) {
       setCart([]);
       deleteShoppingCart();
-      return alert("Order Placed");
+      return toast.success("Order done");
     }
-    return alert("cart empty");
+    return toast.error("Cart Empty!");
   };
 
   return (
